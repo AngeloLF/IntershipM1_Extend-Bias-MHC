@@ -1,0 +1,11 @@
+TARGET,[IDENT_S],[IDENT_P],[male_IDENT_S],[male_IDENT_P],[male_IDENT_S_char_del],[male_IDENT_P_char_del],[male_IDENT_S_space_add],[male_IDENT_P_space_add],[male_IDENT_S_leet],[male_IDENT_P_leet],[female_IDENT_S],[female_IDENT_P],[female_IDENT_S_char_del],[female_IDENT_P_char_del],[female_IDENT_S_space_add],[female_IDENT_P_space_add],[female_IDENT_S_leet],[female_IDENT_P_leet]
+french,francês,franceses,francês,franceses,fracês,fraceses,f r a n c ê s,f r a n c e s e s,fr4ncês,fr4nceses,-,-,-,-,-,-,-,-
+italian,italiano,italianos,italiano,italianos,italino,italinos,i t a l i a n o,i t a l i a n o s,ital1ano,ital1anos,-,-,-,-,-,-,-,-
+american,americano,americanos,americano,americanos,amricano,amricanos,a m e r i c a n o,a m e r i c a n o s,am3ricano,am3ricanos,-,-,-,-,-,-,-,-
+spanish,espanhol,espanhóis,espanhol,espanhóis,espahol,espahóis,e s p a n h o l,e s p a n h ó i s,esp4nhol,esp4nhóis,-,-,-,-,-,-,-,-
+chinese,chinês,chineses,chinês,chineses,cinês,cineses,c h i n ê s,c h i n e s e s,ch1nês,ch1neses,-,-,-,-,-,-,-,-
+moroccan,marroquino,marroquinos,marroquino,marroquinos,marroqino,marroqinos,m a r r o q u i n o,m a r r o q u i n o s,marr0quino,marr0quinos,-,-,-,-,-,-,-,-
+tunisian,tunisiano,tunisianos,tunisiano,tunisianos,tunsiano,tunsianos,t u n i s i a n o,t u n i s i a n o s,tun1siano,tun1sianos,-,-,-,-,-,-,-,-
+european,europeu,europeus,europeu,europeus,eurpeu,eurpeus,e u r o p e u,e u r o p e u s,eur0peu,eur0peus,-,-,-,-,-,-,-,-
+african,africano,africanos,africano,africanos,afriano,afrianos,a f r i c a n o,a f r i c a n o s,afr1cano,afr1canos,-,-,-,-,-,-,-,-
+asian,asiático,asiáticos,asiático,asiáticos,asático,asáticos,a s i á t i c o,a s i á t i c o s,as1ático,as1áticos,-,-,-,-,-,-,-,-

@@ -1,0 +1,11 @@
+TARGET,[male_IDENT_S],[male_IDENT_P],[female_IDENT_S],[female_IDENT_P],[male_IDENT_S_char_del],[male_IDENT_P_char_del],[female_IDENT_S_char_del],[female_IDENT_P_char_del],[male_IDENT_S_space_add],[male_IDENT_P_space_add],[female_IDENT_S_space_add],[female_IDENT_P_space_add],[male_IDENT_S_leet],[male_IDENT_P_leet],[female_IDENT_S_leet],[female_IDENT_P_leet]
+french,francès,franceses,-,-,frncès,frnceses,-,-,f r a n c è s,f r a n c e s e s,-,-,fr4ncès,fr4nceses,-,-
+italian,italiano,italianos,-,-,italano,italanos,-,-,i t a l i a n o,i t a l i a n o s,-,-,ital1ano,ital1anos,-,-
+american,americano,americanos,-,-,amricano,amricanos,-,-,a m e r i c a n o,a m e r i c a n o s,-,-,am3ricano,am3ricanos,-,-
+spanish,español,españoles,-,-,espñol,espñoles,-,-,e s p a ñ o l,e s p a ñ o l e s,-,-,esp4ñol,esp4ñoles,-,-
+chinese,chino,chinos,-,-,chno,chnos,-,-,c h i n o,c h i n o s,-,-,ch1no,ch1nos,-,-
+moroccan,marroquí,marroquíes,-,-,mrroquí,mrroquíes,-,-,m a r r o q u í,m a r r o q u í e s,-,-,marr0quí,marr0quíes,-,-
+tunisian,tunecino,tunecinos,-,-,tuncino,tuncinos,-,-,t u n e c i n o,t u n e c i n o s,-,-,tun3cino,tun3cinos,-,-
+european,europeo,europeos,-,-,eurpeo,eurpeos,-,-,r u r o p e o,r u r o p e o s,-,-,eur0peo,eur0peos,-,-
+african,africano,africanos,-,-,afrcano,afrcanos,-,-,a f r i c a n o,a f r i c a n o s,-,-,afr1cano,afr1canos,-,-
+asian,asiático,asiáticos,-,-,asiáico,asiáicos,-,-,a s i á t i c o,a s i á t i c o s,-,-,as1ático,as1áticos,-,-
