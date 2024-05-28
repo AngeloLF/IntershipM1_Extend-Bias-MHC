@@ -298,11 +298,12 @@ def make_graph(folder, case, cmap=['RdYlGn', 'PRGn', 'RdYlGn'], fmt='.1f', linew
 
 				gmb_ident[:, i] = here_gmb
 				data_global_LA[title].append(here_gmb)
-				if title == 'AUC': 
+				if title == 'F1-AUC': 
 					rGMBauc_LA[f"p={pGMBi}"].append(here_gmb)
 					line = (ps - here_gmb) / here_gmb * 100
+					variance = 1/len(ps) * np.sum([(psi-here_gmb)**2 for psi in ps])
 
-					FINAL[global_index_LA[i]] += f",{np.sum(np.abs(line)):.2f},{np.std(line):.2f}"
+					FINAL[global_index_LA[i]] += f",{np.sum(np.abs(line)):.2f},{np.std(line):.2f},{np.sqrt(variance):.2f}"
 
 			bias_ident = df.loc[prec].values.copy()
 			bias_ident[whereNaN] = (p[whereNaN] - gmb_ident[whereNaN]) / gmb_ident[whereNaN] * 100
@@ -318,18 +319,18 @@ def make_graph(folder, case, cmap=['RdYlGn', 'PRGn', 'RdYlGn'], fmt='.1f', linew
 
 				gmb_lang[j] = here_gmb
 				data_global_ID[title].append(here_gmb)
-				if title == 'AUC': 
+				if title == 'F1-AUC': 
 					rGMBauc_ID[f"p={pGMBi}"].append(here_gmb)
 					line = (ps - here_gmb) / here_gmb * 100
+					variance = 1/len(ps) * np.sum([(psi-here_gmb)**2 for psi in ps])
 
-					FINAL[global_index_ID[j]] += f",{np.sum(np.abs(line)):.2f},{np.std(line):.2f}"
+					FINAL[global_index_ID[j]] += f",{np.sum(np.abs(line)):.2f},{np.std(line):.2f},{np.sqrt(variance):.2f}"
 
 			bias_lang = df.loc[prec].values.copy()
 			bias_lang[whereNaN] = (p[whereNaN] - gmb_lang[whereNaN]) / gmb_lang[whereNaN] * 100
 
 
 			# BIAS GRAPH
-
 			plt.figure(figsize=(16, 8))
 
 			plt.subplot(131)
@@ -387,8 +388,8 @@ def make_graph(folder, case, cmap=['RdYlGn', 'PRGn', 'RdYlGn'], fmt='.1f', linew
 
 	with open(f"{folder}_RESULT/{case}_RESULT/FINAL bias result.csv", "w") as f:
 
-		for pi in pGMB : f.write(f",p={pi},")
-		f.write(f"\n{',Mean,STD'*len(pGMB)}\n")
+		for pi in pGMB : f.write(f",p={pi},,")
+		f.write(f"\n{',Sum,STD,STDp'*len(pGMB)}\n")
 
 		for key, val in FINAL.items():
 			f.write(val + "\n")
@@ -407,18 +408,18 @@ def make_graph(folder, case, cmap=['RdYlGn', 'PRGn', 'RdYlGn'], fmt='.1f', linew
 	plt.figure(figsize=(16, 8))
 
 	plt.subplot(121)
-	plt.title(f"GMB AUC for targets (%)")
+	plt.title(f"GMB F1-AUC for targets (%)")
 	sns.heatmap(df_rid, cmap=cmap[2], annot=True, fmt=fmt, linewidths=linewidths, linecolor='black')
 	plt.xticks(rotation=25)
 	plt.yticks(rotation=-15)
 
 	plt.subplot(122)
-	plt.title(f"GMB AUC for langage (%)")
+	plt.title(f"GMB F1-AUC for langage (%)")
 	sns.heatmap(df_rla, cmap=cmap[2], annot=True, fmt=fmt, linewidths=linewidths, linecolor='black')
 	plt.xticks(rotation=25)
 	plt.yticks(rotation=-15)
 
-	plt.savefig(f"{folder}_RESULT/{case}_RESULT/{case}_GRAPH_GMB_AUC.png")
+	plt.savefig(f"{folder}_RESULT/{case}_RESULT/{case}_GRAPH_GMB_F1-AUC.png")
 	plt.close()
 
 
@@ -443,8 +444,8 @@ def make_graph(folder, case, cmap=['RdYlGn', 'PRGn', 'RdYlGn'], fmt='.1f', linew
 	c.fly(f"Make Resume metrics graph...")
 	plt.figure(figsize=(16, 8))
 	vmin, vmax = 50, 80
-	select_metrics = ["Accuracy", "Over Detection", "Macro F1", "AUC", "F1-AUC"]
-	super_ = [acc, op, f1, auc, f1auc]
+	select_metrics = ["Macro F1", "AUC", "F1-AUC"]
+	super_ = [f1, auc, f1auc]
 
 	for i, (prec, title) in enumerate(zip(super_, select_metrics)):
 
@@ -457,7 +458,7 @@ def make_graph(folder, case, cmap=['RdYlGn', 'PRGn', 'RdYlGn'], fmt='.1f', linew
 		sns.heatmap(df.loc[prec], cmap=cmap[0], annot=True, fmt='.0f', linewidths=linewidths, linecolor='black', cbar=False)
 		plt.xticks(rotation=25)
 
-		if i == 0 : plt.yticks(plt.yticks()[0], [preci.replace('PREC_', '') for preci in prec], rotation=-15)
+		if i == 0 : plt.yticks(plt.yticks()[0], [preci.split('_')[-1] for preci in prec], rotation=-15)
 		else : plt.yticks([])
 
 	plt.savefig(f"{folder}_RESULT/{case}_RESULT/{case}_GRAPH RESUME METRICS.png")
@@ -518,6 +519,30 @@ def make_graph(folder, case, cmap=['RdYlGn', 'PRGn', 'RdYlGn'], fmt='.1f', linew
 
 		plt.savefig(f"{folder}_RESULT/{case}_RESULT/confusion/{title}_CONFUSION.png")
 		plt.close()
+
+
+
+
+	# graph confusion acc + over detection
+	# data_prec = [acc, mcc, mm, op, auc, f1, f1auc]
+	# metrics = ["Accuracy", "MCC", "Recall", "Over Detection", "AUC", "MacF1", "F1-AUC"]
+
+	plt.figure(figsize=(16, 8))
+
+	plt.subplot(121)
+	plt.title(f"Accuracy (%)")
+	sns.heatmap(df.loc[acc], cmap=cmap[0], annot=True, fmt='.1f', linewidths=linewidths, linecolor='black', cbar=False)
+	plt.xticks(rotation=25)
+	plt.yticks(plt.yticks()[0], [preci.split('_')[-1] for preci in acc], rotation=-15)
+
+	plt.subplot(122)
+	plt.title(f"Over Detection (%)")
+	sns.heatmap(df.loc[op], cmap=cmap[0], annot=True, fmt='.1f', linewidths=linewidths, linecolor='black', cbar=False)
+	plt.xticks(rotation=25)
+	plt.yticks([])
+
+	plt.savefig(f"{folder}_RESULT/{case}_RESULT/confusion/new_ACC_OverD_CONFUSION.png")
+	plt.close()
 
 
 
