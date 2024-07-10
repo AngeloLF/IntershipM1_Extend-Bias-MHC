@@ -558,6 +558,9 @@ def all_view(folder):
 
 		c.flm(f"Make {case} view...")
 
+		if f"{folder}_RESULT" not in os.listdir():
+			os.mkdir(f"{folder}_RESULT")
+
 		if f"{case}_RESULT" in os.listdir(f"{folder}_RESULT"):
 			c.flr(f"INFO : {folder}_RESULT/{case}_RESULT delete for remake")
 			shutil.rmtree(f"{folder}_RESULT/{case}_RESULT")
